@@ -1,0 +1,48 @@
+@mixin text-smooth() {
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+@mixin input-placeholder($color) {
+  &.placeholder {
+    color: $color; 
+  }
+  &:-moz-placeholder {
+    color: $color; 
+  }
+  &::-webkit-input-placeholder {
+    color: $color; 
+  } 
+}
+
+@mixin arrow-up($size: 10px, $color: black){
+	width: 0; 
+	height: 0; 
+	border-left: $size solid transparent;
+	border-right: $size solid transparent;
+	border-bottom: $size solid $color;
+}
+
+@mixin arrow-down($size: 10px, $color: black){
+	width: 0; 
+	height: 0; 
+	border-left: $size solid transparent;
+	border-right: $size solid transparent;
+	border-top: $size solid $color;
+}
+
+@mixin arrow-right($size: 10px, $color: black){
+	width: 0; 
+	height: 0; 
+	border-top: $size solid transparent;
+	border-bottom: $size solid transparent;
+	border-left: $size solid $color;
+}
+
+@mixin arrow-left($size: 10px, $color: black){
+	width: 0; 
+	height: 0; 
+	border-top: $size solid transparent;
+	border-bottom: $size solid transparent; 
+	border-right:$size solid $color;
+}

@@ -1,0 +1,26 @@
+.jobs-board {
+  background-color: #EEEEEE;
+  width: 100%;
+  padding-top: 20px; }
+  .jobs-board.jobs-board-transparent {
+    background-color: transparent; }
+
+.jobs-board-job {
+  width: 85%;
+  margin: 0 auto;
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 20px;
+  margin-bottom: 20px; }
+  .jobs-board-job.jobs-board-job-single {
+    background-color: transparent;
+    padding: 0; }
+    .jobs-board-job.jobs-board-job-single .title {
+      text-align: center; }
+    .jobs-board-job.jobs-board-job-single .body {
+      padding: 20px;
+      box-sizing: border-box;
+      background-color: #fff; }
+
+
+/*# sourceMappingURL=embed.css.map */

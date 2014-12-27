@@ -1,0 +1,266 @@
+@import "normalize";
+@import "bourbon/bourbon";
+@import "base/grid-settings";
+@import "neat/neat";
+@import "neat/neat";
+@import "base/base";
+@import "bourbon-nav";
+@import "refills-styles";
+@import "refills-nav";
+
+@import "mixins";
+
+@import "refills/accordion-tabs-minimal";
+@import "refills/accordion-tabs";
+@import "refills/accordion";
+@import "refills/badges";
+@import "refills/breadcrumbs";
+@import "refills/browser";
+@import "refills/button-group";
+@import "refills/cards";
+@import "refills/centered-navigation";
+@import "refills/comment";
+@import "refills/device";
+@import "refills/dropdown";
+@import "refills/footer-2";
+@import "refills/footer";
+@import "refills/grid-items-lines";
+@import "refills/grid-items";
+@import "refills/hero";
+@import "refills/hover-tile-animation";
+@import "refills/icon-bullet-points";
+@import "refills/image-gradient-dynamic";
+@import "refills/intro-text";
+@import "refills/modal";
+@import "refills/navigation";
+@import "refills/pagination";
+@import "refills/progress-bar-indication";
+@import "refills/progress-bar";
+@import "refills/search-bar";
+@import "refills/search-tools";
+@import "refills/side-image";
+@import "refills/sliding-menu";
+@import "refills/switch";
+@import "refills/tables-minimal";
+@import "refills/tables";
+@import "refills/texture-legend";
+@import "refills/textures";
+@import "refills/tooltip";
+@import "refills/type-system-geometric";
+@import "refills/type-system-rounded";
+@import "refills/type-system-sans";
+@import "refills/type-system-serif";
+@import "refills/type-system-slab";
+@import "refills/type-system-traditional";
+@import "refills/vertical-tabs";
+// @import "refills/video";
+
+input[type="text"], input[type="email"], input[type="password"], textarea {
+	border-radius: 0;
+	border: none;
+	border-bottom: 2px solid transparent;
+	box-shadow: none;
+	font-size: 1.6em;
+	font-weight: bold;
+	padding: 0.25em 0;
+
+	&:focus {
+		outline: none;
+		box-shadow: none;
+		border-bottom: 2px solid #ccc;
+
+		&:hover {
+			border-bottom: 2px solid #ccc;	
+		}
+	}
+
+	&:hover {
+		border-bottom: 2px solid transparent;
+	}
+}
+
+textarea {
+	font-size: 1em;
+	font-weight: normal;
+	&:focus {
+		border-bottom: none;
+		&:hover {
+			border-bottom: none;
+		}
+	}
+}
+
+.outer-container {
+	// @include outer-container;
+}
+
+header.navigation .navigation-wrapper {
+	max-width: 100%;
+}
+
+.login-form {
+	width: 550px;
+	height: 180px;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	margin-left: -(550px / 2);
+	margin-top: -(180px / 2);
+}
+
+.jobs-list {
+
+	width: 25%;
+	height: calc(100% - 60px);
+	position: absolute;
+	top: 60px;
+	left: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	box-sizing: border-box;
+
+  	$list-item-border: 1px solid $base-border-color;
+  	$list-item-hover-color: lighten($base-border-color, 5%);
+
+  	border-right: $list-item-border;
+
+  	li {
+  		a {
+  			display: block;
+  			border-bottom: $list-item-border;
+  			padding: 10px;
+  			box-sizing: border-box;
+			
+			&:hover {
+				background-color: $list-item-hover-color;
+			}
+
+  			.title, .company {
+  				font-weight: bold;
+  				font-size: 1em;
+  			}
+  			p {
+  				margin-bottom: 0;
+  			}
+  		}
+  	}
+
+}
+
+.job-edit, .job-preview {
+	float: left;
+	width: 50%;
+	box-sizing: border-box;
+	padding: 10px;
+
+	.label {
+		text-transform: uppercase;
+		color: lighten(#000, 40%);
+		font-size: .8em;
+	}
+}
+
+.autocomplete-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(#fff, .3);
+	z-index: 4;
+	display: none;
+
+	&.show {
+		display: block;
+	}
+}
+
+.job-edit {
+	.position, .title, .location, .company, .category {
+		height: 47px;
+		position: relative;
+	}
+	.description {
+		
+		position: relative;
+
+		textarea {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+		}
+	}
+	.autocomplete {
+		display: none;
+		position: absolute;
+		top: 47px;
+		left: 0;
+		width: 100%;
+		height: 280px;
+		overflow: auto;
+		background-color: #fff;
+
+		li {
+			
+			padding: 5px;
+			cursor: pointer;
+
+			&:hover, &.selected {
+				background-color: darken(#fff, 5%);
+			}
+		}
+
+		&.open {
+			display: block;
+			z-index: 5;
+		}
+	}
+}
+
+.job-preview {
+	overflow-x: hidden;
+	overflow-y: auto;
+
+
+}
+
+@include media(max-width 860px) {
+	.job-edit {
+		width: 100%;
+		float: none;
+	}
+
+	.job-preview {
+		display: none;
+	}
+}
+
+header.navigation {
+	.nav {
+		float: left;
+	}
+}
+
+.form-actions {
+
+	background-color: #F7F7F7;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	padding: 10px;
+
+	button {
+		float: right;
+	}
+}
+
+.page-missing {
+	width: 25%;
+	margin: 200px auto 0;
+
+	h2, h3 {
+		text-align: center;
+	}
+}
