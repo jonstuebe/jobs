@@ -118,9 +118,10 @@ Route::group(array('domain' => '{site}.jo.bs', 'before' => array('subdomain')), 
 	Route::group(array('prefix' => 'job', 'before' => 'auth'), function($site)
 	{
 
-		Route::get('{id}', array('uses' => 'Admin@editJob', 'as' => 'job.edit'))->where('id', '[0-9]+');
+		Route::get('{id}', array('uses' => 'Admin@editJob'))->where('id', '[0-9]+');
 		Route::post('{id}', array('uses' => 'Admin@updateJob'))->where('id', '[0-9]+');
-		Route::get('add', array('uses' => 'Admin@addJob', 'as' => 'job.add'));
+		Route::post('add', array('uses' => 'Admin@updateJob'));
+		Route::get('add', array('uses' => 'Admin@addJob'));
 
 	});
 
@@ -138,5 +139,5 @@ Route::get('logout', function()
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return View::make('site.index');
 });

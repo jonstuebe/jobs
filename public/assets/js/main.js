@@ -33,7 +33,9 @@ $(function() {
 			location_id: $preview.find('.location input[type="hidden"]').val(),
 		};
 
-		$.post('/job/' + $preview.data('id'), fields, function(data)
+		var job_id = ($preview.data('id') != "") ? $preview.data('id') : "add";
+
+		$.post('/job/' + job_id, fields, function(data)
 		{
 			console.log('saved');
 			$('.job-edit .company input[type="hidden"]').val(data.company_id);
@@ -144,8 +146,11 @@ $(function() {
 	$('body').on('click', '.autocomplete-overlay', autocompleteClose);
 
 	$(window).on('load', function(){
-		$('.job-preview .content').html( marked($('#description').val()) );
-		$('.job-edit input[type="text"]:first').focus();
+		if($('.job-edit').length)
+		{
+			$('.job-preview .content').html( marked($('#description').val()) );
+			$('.job-edit input[type="text"]:first').focus();
+		}
 	});
 
 	function resizeDescription()

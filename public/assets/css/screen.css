@@ -5708,6 +5708,13 @@ textarea {
     textarea:focus:hover {
       border-bottom: none; }
 
+.outer-container.marketing #logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -150px;
+  margin-top: -275px; }
+
 header.navigation .navigation-wrapper {
   max-width: 100%; }
 
@@ -5806,6 +5813,12 @@ header.navigation .navigation-wrapper {
 
 header.navigation .nav {
   float: left; }
+header.navigation .nav-right {
+  float: right; }
+header.navigation .logo img {
+  width: 40px;
+  max-height: auto;
+  padding: 1.1em 0; }
 
 .form-actions {
   background-color: #F7F7F7;

@@ -16,8 +16,8 @@
 
 		<header class="navigation">
 			<div class="navigation-wrapper">
-				<a href="/" class="logo">
-					<img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="Logo Image" />
+				<a href="{{ url('/') }}" class="logo">
+					<img src="/assets/svg/job-icon.svg" alt="Logo Image" />
 				</a>
 				<?php if(isset($hideNav)): ?>
 				<?php else: ?>
@@ -25,6 +25,12 @@
 					<ul id="js-navigation-menu" class="navigation-menu show">
 						<li class="nav-link"><a href="{{ url('/') }}">All Jobs</a></li>
 						<li class="nav-link"><a href="{{ url('job/add') }}">Add Job</a></li>
+					</ul>
+				</div>
+
+				<div class="nav-right">
+					<ul id="js-navigation-menu" class="navigation-menu show">
+						<li class="nav-link"><a href="{{ url('logout') }}">Logout</a></li>
 					</ul>
 				</div>
 				<?php endif; ?>

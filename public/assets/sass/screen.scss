@@ -92,6 +92,16 @@ textarea {
 
 .outer-container {
 	// @include outer-container;
+
+	&.marketing {
+		#logo {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			margin-left: -(300px / 2);
+			margin-top: -(550px / 2);
+		}
+	}
 }
 
 header.navigation .navigation-wrapper {
@@ -239,6 +249,18 @@ header.navigation .navigation-wrapper {
 header.navigation {
 	.nav {
 		float: left;
+	}
+
+	.nav-right {
+		float: right;
+	}
+
+	.logo {
+		img {
+			width: 40px;
+			max-height: auto;
+			padding: 1.1em 0;
+		}
 	}
 }
 

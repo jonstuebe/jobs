@@ -11,7 +11,6 @@ class Admin extends \BaseController {
 		->where('site_id',$site->id)
 		->get();
 
-		// return Response::json($jobs);
 		$this->layout->content = View::make('admin.index', array( 'jobs' => $jobs ));
 	}
 
@@ -41,7 +40,7 @@ class Admin extends \BaseController {
 		$username = Input::get('username');
 		$password = Input::get('password');
 
-		$site = Session::get('site');
+		$site = Site::where('subdomain', $site)->first();
 		if(Auth::attempt(array('username' => $username, 'password' => $password, 'site_id' => $site->id)))
 		{
 			Session::put('site', $site);
@@ -56,6 +55,7 @@ class Admin extends \BaseController {
 
 	public function addJob($site)
 	{
+		// return $this->layout->content = View::make('admin.job.add');
 		return $this->layout->content = View::make('admin.job.edit');
 	}
 
@@ -72,14 +72,22 @@ class Admin extends \BaseController {
 		$this->layout->content = View::make('admin.job.edit', array( 'job' => $job, 'city_state' => $city_state ));
 	}
 
-	public function updateJob($site, $id)
+	public function updateJob($site, $id = false)
 	{
 		$site = Session::get('site');
-		$job = Job::find($id);
 		$position = Input::get('position');
 		$category = Input::get('category');
 		$company_id = Input::get('company_id');
 		$location_id = Input::get('location_id');
+
+		if(!$id)
+		{
+			$job = new Job;
+		}
+		else
+		{
+			$job = Job::find($id);
+		}
 
 		if($company_id == "")
 		{
