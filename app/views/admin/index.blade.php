@@ -5,10 +5,9 @@
 		<ul>
 			@foreach ($jobs as $job)
 			<li>
-				<a href="{{ url('job/'.$job->id) }}">
-					<h2 class="title">{{ $job->position }}</h2>
-					<h3 class="company">{{ $job->company->name }}</h3>
-					<p class="location">{{ $job->location->city }}, {{ $job->location->state }}</p>
+				<a href="{{ url('job/'.$job->id) }}" data-id="{{ $job->id }}">
+					<p><strong>{{ $job->company->name }}</strong> is looking for a <strong>{{ $job->position }}</strong></p>
+					<p class="location">in <strong>{{ $job->location->city }}, {{ $job->location->state }}</strong></p>
 				</a>
 			</li>
 			@endforeach

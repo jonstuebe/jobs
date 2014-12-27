@@ -79,10 +79,12 @@ class Admin extends \BaseController {
 		$category = Input::get('category');
 		$company_id = Input::get('company_id');
 		$location_id = Input::get('location_id');
+		$description = Input::get('description');
 
 		if(!$id)
 		{
 			$job = new Job;
+			$job->site_id = $site->id;
 		}
 		else
 		{
@@ -93,7 +95,7 @@ class Admin extends \BaseController {
 		{
 			$company = Company::create([
 				'name' => Input::get('company'),
-				'site_id' => $site,
+				'site_id' => $site->id,
 				'url' => '',
 				'description' => ''
 			]);
@@ -111,7 +113,7 @@ class Admin extends \BaseController {
 			$city = $_location[0];
 			$state = (isset($_location[1])) ? $_location[1] : "";
 			$location = Location::create([
-				'site_id' => $site,
+				'site_id' => $site->id,
 				'city' => $city,
 				'state' => $state,
 				'country' => 'United States',
@@ -123,10 +125,11 @@ class Admin extends \BaseController {
 		{
 			$job->location_id = $location_id;
 		}
-		
+
 		$job->position = $position;
 		$job->category = $category;
 		$job->category_slug = Str::slug($category);
+		$job->description = $description;
 		$job->slug = Str::slug($position);
 
 		if($job->save())

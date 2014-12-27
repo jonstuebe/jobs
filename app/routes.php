@@ -54,6 +54,7 @@ Route::group(array('prefix' => 'api/v1'), function()
 			}
 			else
 			{
+				$query = str_replace(',','',$query);
 				$locations = Location::where('city', 'like', '%'.$query[0].'%')
 				->where('site_id', $site->id)
 				->orWhere('state', 'like', '%'.$query[0].'%')

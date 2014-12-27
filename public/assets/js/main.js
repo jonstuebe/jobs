@@ -13,12 +13,13 @@ $(function() {
 	var cmd = false;
 	$(document).on('keydown', function(e)
 	{
-
-		if($('.job-edit').length)
-		{
-			// saveJob();
+		if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+			if($('.job-edit').length)
+			{
+				saveJob();
+			}
+			e.preventDefault();	
 		}
-
 	});
 
 	function saveJob()
@@ -30,6 +31,7 @@ $(function() {
 			category: $preview.find('.category input[type="text"]').val(),
 			position: $preview.find('.position input[type="text"]').val(),
 			location: $preview.find('.location input[type="text"]').val(),
+			description: $preview.find('.description textarea').val(),
 			location_id: $preview.find('.location input[type="hidden"]').val(),
 		};
 
@@ -37,9 +39,22 @@ $(function() {
 
 		$.post('/job/' + job_id, fields, function(data)
 		{
-			console.log('saved');
-			$('.job-edit .company input[type="hidden"]').val(data.company_id);
-			$('.job-edit .location input[type="hidden"]').val(data.location_id);
+			if(data.id)
+			{
+				if(history.pushState) history.pushState({}, "", data.id);
+				$('.job-edit .company input[type="hidden"]').val(data.company_id);
+				$('.job-edit .location input[type="hidden"]').val(data.location_id);
+				console.log('job saved');
+
+				$('.form-actions .saved').addClass('show');
+				setTimeout(function() {
+					$('.form-actions .saved').removeClass('show');
+				}, 1000);
+			}
+			else
+			{
+				alert("something went wrong");
+			}
 		});
 	}
 
@@ -47,6 +62,19 @@ $(function() {
 	$('.job-edit .complete').each(function(){
 		$(this).data('val', $(this).val());
 	});
+	$('.job-edit').on('keydown', 'input[type="text"], textarea', function()
+	{
+		$(this).parent().find('label').addClass('show');
+	});
+	$('.job-edit .input').each(function()
+	{
+		var $this = $(this);
+
+		if($this.find('input, textarea').val() != "")
+		{
+			$this.find('label').addClass('show');
+		}
+	})
 	$('.job-edit').on('keyup', '.complete', function(e)
 	{
 		var $this = $(this),
@@ -108,30 +136,53 @@ $(function() {
 
 	var autocompleteSearch = function(input, query)
 	{
-		var type = input.parent().attr('class');
-
-		if(type == 'company') type = 'companies';
-		if(type == 'location') type = 'locations';
+		var type = input.parent().data('type');
 
 		$.get('/api/v1/' + type, query, function(data){
 			input.parent().find('.autocomplete ul').empty();
 			if(data.length)
 			{
-				$.each(data, function()
+				var skip = false;
+				if(type == 'companies')
 				{
-					if(type == 'companies')
+					if(data.length == 1 && data[0]['name'] == query.query)
 					{
-						input.parent().find('.autocomplete ul').append('<li data-id="' + this.id + '">' + this.name + '</li>');
+						skip = true;
 					}
-					else if(type == 'locations')
+				}
+				else if(type == 'locations')
+				{
+					var _query = query.query.split(', ');
+					if(data.length == 1 && data[0]['city'] == _query[0] && data[0]['state'] == _query[1])
 					{
-						console.log(this);
-						input.parent().find('.autocomplete ul').append('<li data-id="' + this.id + '">' + this.city + ', ' + this.state + '</li>');
+						skip = true;
 					}
-				});
-				input.parent().find('.autocomplete ul li:first').addClass('selected');
-				$('.autocomplete-overlay').addClass('show');
-				input.parent().find('.autocomplete').addClass('open');
+				}
+
+				console.log('skip', skip);
+
+				if(skip != true)
+				{
+					$.each(data, function()
+					{
+						if(type == 'companies')
+						{
+							input.parent().find('.autocomplete ul').append('<li data-id="' + this.id + '">' + this.name + '</li>');
+						}
+						else if(type == 'locations')
+						{
+							console.log(this);
+							input.parent().find('.autocomplete ul').append('<li data-id="' + this.id + '">' + this.city + ', ' + this.state + '</li>');
+						}
+					});
+					input.parent().find('.autocomplete ul li:first').addClass('selected');
+					$('.autocomplete-overlay').addClass('show');
+					input.parent().find('.autocomplete').addClass('open');
+				}
+				else
+				{
+					autocompleteClose();
+				}
 			}
 		});
 	}
