@@ -122,6 +122,34 @@ $(function() {
 		}
 	});
 
+	if($.cookie('sort') == 'grid')
+	{
+		$('.jobs-list').addClass('grid');
+		$('.jobs-sort .grid').addClass('active');
+	}
+
+	$('.jobs-sort').on('click', '.list', function(e)
+	{
+		$('.jobs-list').removeClass('grid');
+		
+		$('.jobs-sort .list').addClass('active');
+		$('.jobs-sort .grid').removeClass('active');
+
+		$.cookie('sort','list', { expires: 7, path: '/' });
+		e.preventDefault();
+	});
+
+	$('.jobs-sort').on('click', '.grid', function(e)
+	{
+		$('.jobs-list').addClass('grid');
+		
+		$('.jobs-sort .grid').addClass('active');
+		$('.jobs-sort .list').removeClass('active');
+
+		$.cookie('sort','grid', { expires: 7, path: '/' });
+		e.preventDefault();
+	});
+
 	$('.job-edit').on('click', '.autocomplete li', function(e)
 	{
 		var input = $(this).parents('.autocomplete').parent().find('input[type="text"]');
@@ -206,7 +234,7 @@ $(function() {
 
 	function resizeDescription()
 	{
-		$('.job-edit .description').css('height', $(window).height() - $('header.navigation').height() - (47 * 4) - (10 * 2) - 65 );
+		$('.job-edit .description').css('height', $(window).height() - $('header.navigation').height() - (75 * 4) - (10 * 2) - 85 );
 		$('.job-preview').css('height', $(window).height() - $('header.navigation').height() - 70 );
 	}
 

@@ -6,11 +6,13 @@
 		{{ Form::open() }}
 
 		<p>
-			<input type="text" name="username" placeholder="Username">
+			<label for="username">Username</label>
+			<input type="text" name="username" id="username" />
 		</p>
 
 		<p>
-			<input type="password" name="password" placeholder="Password">
+			<label for="password">Password</label>
+			<input type="password" name="password" id="password" />
 		</p>
 
 		<p>

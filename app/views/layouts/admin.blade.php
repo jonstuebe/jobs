@@ -14,7 +14,7 @@
 <body>
 	
 	<div class="outer-container">
-
+		<div class="header-placeholder"></div>
 		<div class="header-nav">
 			<div class="header-nav-wrap">
 				<h1 id="logo"><a href="{{ url('/') }}">postivo</a></h1>
@@ -29,7 +29,7 @@
 
 				<div class="nav nav-right">
 					<ul class="navigation-menu show">
-						<li class="nav-link"><a href="">Settings</a></li>
+						<!-- <li class="nav-link"><a href="">Settings</a></li> -->
 						<li class="nav-link"><a href="{{ url('logout') }}">Logout</a></li>
 					</ul>
 				</div>
@@ -42,6 +42,8 @@
 
 	<script src="/assets/vendor/jquery/js/jquery.js"></script>
 	<script src="/assets/vendor/marked/js/marked.js"></script>
+	<script src="/assets/vendor/jquery.cookie/js/jquery.cookie.js"></script>
 	<script src="/assets/js/main.js"></script>
+
 </body>
 </html>

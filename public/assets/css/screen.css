@@ -5692,7 +5692,11 @@ body, input, input[type="text"], .search-tools .filter > div, input[type="email"
   line-height: 60px;
   width: 100%;
   padding: 0 1em 0 0;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10; }
   .header-nav .header-nav-wrap {
     *zoom: 1; }
     .header-nav .header-nav-wrap:before, .header-nav .header-nav-wrap:after {
@@ -5763,7 +5767,8 @@ body, input, input[type="text"], .search-tools .filter > div, input[type="email"
   font-size: 1em;
   font-weight: normal;
   padding-top: 1em;
-  margin-top: 5px; }
+  margin: 5px 0 0 0;
+  overflow-y: auto; }
   .job-edit textarea:focus {
     border-bottom: none; }
     .job-edit textarea:focus:hover {
@@ -5797,35 +5802,105 @@ header.navigation .navigation-wrapper {
 
 .login-form {
   width: 550px;
-  height: 180px;
+  height: 216px;
   position: fixed;
   left: 50%;
   top: 50%;
   margin-left: -275px;
-  margin-top: -90px; }
+  margin-top: -108px; }
+  .login-form label {
+    font-family: 'Open Sans', sans-serif; }
+  .login-form input[type="text"], .login-form .search-tools .filter > div, .search-tools .filter > .login-form div, .login-form input[type="password"] {
+    border-radius: 0;
+    box-shadow: none; }
+
+.jobs-sort {
+  width: 100%;
+  height: 60px;
+  background-color: #E8E8E8;
+  padding: 10px;
+  box-sizing: border-box; }
+  .jobs-sort button {
+    border-radius: 0;
+    outline: none; }
+    .jobs-sort button.active {
+      background-color: #2c5999; }
+  .jobs-sort .buttons {
+    float: left; }
+
+.header-placeholder {
+  height: 60px; }
 
 .jobs-list {
-  width: 25%;
-  height: calc(100% - 60px);
-  position: absolute;
-  top: 60px;
-  left: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
+  width: 100%;
   box-sizing: border-box;
   border-right: 1px solid #DDD; }
+  .jobs-list.grid {
+    box-sizing: border-box; }
+    .jobs-list.grid li a {
+      width: 31.333%;
+      height: 220px;
+      border: none;
+      padding: 0;
+      box-sizing: border-box;
+      margin: 1%;
+      background-color: #F7F7F7;
+      border: 1px solid #dedede; }
+      .jobs-list.grid li a:hover {
+        background-color: #efefef; }
+      .jobs-list.grid li a .top-image {
+        width: 100%;
+        height: 130px;
+        background-size: cover;
+        background-position: center bottom;
+        display: block;
+        position: relative;
+        box-sizing: border-box; }
+        .jobs-list.grid li a .top-image:after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 47px;
+          background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.5)));
+          background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+          background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+          background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+          background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+          background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+          bottom: 0;
+          left: 0; }
+        .jobs-list.grid li a .top-image .label {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          padding: 10px;
+          color: #fff;
+          width: 100%;
+          z-index: 1; }
+      .jobs-list.grid li a .text {
+        padding: 10px;
+        display: block;
+        box-sizing: border-box; }
+        .jobs-list.grid li a .text h2, .jobs-list.grid li a .text h3 {
+          font-family: 'Open Sans', sans-serif; }
   .jobs-list li a {
     display: block;
     border-bottom: 1px solid #DDD;
-    padding: 10px;
-    box-sizing: border-box; }
+    padding: 30px;
+    box-sizing: border-box;
+    float: left;
+    width: 100%; }
     .jobs-list li a:hover {
-      background-color: #eaeaea; }
+      background-color: #f7f7f7; }
+    .jobs-list li a .top-image {
+      background-image: none !important; }
     .jobs-list li a .title, .jobs-list li a .company {
       font-weight: bold;
       font-size: 1em; }
     .jobs-list li a p {
       margin-bottom: 0; }
+    .jobs-list li a .text h2, .jobs-list li a .text h3 {
+      font-family: 'Open Sans', sans-serif; }
 
 .job-edit, .job-preview {
   float: left;
